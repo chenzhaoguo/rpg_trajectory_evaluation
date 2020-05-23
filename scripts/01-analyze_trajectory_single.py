@@ -17,7 +17,7 @@ from multiple_traj_errors import MulTrajError
 
 init(autoreset=True)
 rc('font', **{'family': 'serif', 'serif': ['Cardo']})
-rc('text', usetex=True)
+rc('text', usetex=False)
 
 FORMAT = '.png'
 
@@ -193,17 +193,19 @@ if __name__ == '__main__':
         #             FORMAT, bbox_inches='tight')
 
         ## r p y  rotation err.  vs  distance
-        fig2, ax2 = plt.subplots(figsize=(6, 3))
+        fig2, ax2 = plt.subplots(figsize=(3.0, 2.5))
         ax2.plot(plot_traj.accum_distances, plot_traj.abs_errors['abs_e_ypr'][:, 2]*180.0/np.pi, linewidth=1.0, color='r',label='roll')
         ax2.plot(plot_traj.accum_distances, plot_traj.abs_errors['abs_e_ypr'][:, 1]*180.0/np.pi, linewidth=1.0, color='g', label='pitch')
         ax2.plot(plot_traj.accum_distances, plot_traj.abs_errors['abs_e_ypr'][:, 0]*180.0/np.pi, linewidth=1.0, color='b', label='yaw')
-        ax2.set_xlabel('Distance [m]', fontsize=10)
-        ax2.set_ylabel('rotation err. [deg]', fontsize=10)
-        ax2.tick_params(labelsize=10)
-        ax2.legend(loc='upper right', fontsize=8, edgecolor='w')
+        ax2.set_xlabel('Distance [m]', fontsize=8)
+        ax2.set_ylabel('rotation err. [deg]', fontsize=8)
+        ax2.tick_params(labelsize=7)
+        ax2.legend(loc='upper right', fontsize=7, edgecolor='w')
         ax2.grid(linestyle="--")
+        fig2.savefig("./rpy.png", dpi=300, bbox_inches="tight")
 
-        plt.show()
+
+        # plt.show()
 
         # fig = plt.figure(figsize=(8, 2.5))
         # ax = fig.add_subplot(111, xlabel='Distance [m]', ylabel='Scale Drift [\%]', xlim=[0, plot_traj.accum_distances[-1]])
